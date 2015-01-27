@@ -14,7 +14,7 @@ If you don't, I think the .gitignore file in this root directory will cause the 
 
 3. Open a git bash shell on the root folder
 
-4. Issue: 
-   $ git add . 
+4. Issue:<br/>
+   $ git add .<br/>
    $ git commit -m 'which project add/update' 
    $ git push 
