@@ -1,7 +1,6 @@
 # Sample Android Code for my CS449 class
 
-Notes to self
--------------
+<h3>Notes to self</h3>
 
 To add a project:
 
