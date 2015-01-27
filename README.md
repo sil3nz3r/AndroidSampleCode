@@ -17,4 +17,4 @@ If you don't, I think the .gitignore file in this root directory will cause the 
 4. Issue:
    $ git add .
    $ git commit -m 'which project add/update'
-   $ git push origin master
+   $ git push
