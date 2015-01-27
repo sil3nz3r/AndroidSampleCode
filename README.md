@@ -2,7 +2,7 @@
 
 <h3>If you want to download and run a program here:</h3>
 
-1. click on "Download ZIP" (or better yet, clone the repository to your compture. If you clone you can pull changes and always have the latest projects on your computer).
+1. click on "Download ZIP" (or better yet, clone the repository to your compture. If you clone you can pull changes and always have the latest projects on your computer)
 2. Unzip the file
 3. Copy the folder for the project you want to your Android Studio projects folder
 4. Open the project in Android Studio
