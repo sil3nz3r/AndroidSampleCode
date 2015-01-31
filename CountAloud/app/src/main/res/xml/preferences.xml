@@ -1,0 +1,31 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      Consider using @string references rather than
+      hard coded values.
+    -->
+    <PreferenceCategory android:title="General">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/announceKey"
+            android:summary="Read count aloud during increment and decrement"
+            android:title="Announce Count" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Security">
+        <!--
+          The following is not used. I'm showing it as
+          an example of other types of preference controls that
+          can be used.
+          Note, the summary is filled in at runtime based on value entered.
+        -->
+        <EditTextPreference
+            android:key="loginAttemptsPreferenceKey"
+            android:defaultValue="3"
+            android:summary="Summary is set in code. This value is not used."
+            android:title="Max Failed Login Attempts" />
+    </PreferenceCategory>
+</PreferenceScreen>

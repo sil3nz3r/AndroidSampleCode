@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Count:"
+            android:textSize="24.5sp" android:layout_marginRight="5dp"/>
+        <TextView
+            android:id="@+id/count_view"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="24.5sp"
+            android:layout_width="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+    </LinearLayout>
+    <Button android:id="@+id/inc_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Increment"></Button>
+    <Button android:id="@+id/dec_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Decrement"></Button>
+</LinearLayout>
