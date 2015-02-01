@@ -1,5 +1,15 @@
 # Sample Android Code for my CS449 class
 
+<h3>Apps and their features:</h3>
+
+CountMuchMore - event handlers, dialog boxes
+
+CountMuchMoreFragment - Same as CountMuchMore but with fragments
+
+CountMuchMoreMenuesAndMore - menues (toolbar and contextual action mode), starting a new activty, start screen icon
+
+CountAloud - preferences and text-to-speech
+
 <h3>If you want to download and run a program here:</h3>
 
 1. click on "Download ZIP" (or better yet, clone the repository to your compture. If you clone you can pull changes and always have the latest projects on your computer)

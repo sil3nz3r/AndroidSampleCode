@@ -2,19 +2,25 @@ package edu.umkc.burrise.countaloud;
 
 import android.content.Intent;
 import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 // This program demonstrates Preferences.
 // Ref: http://developer.android.com/guide/topics/ui/settings.html
 //
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener, TextToSpeech.OnInitListener   {
+    private static final String TAG = "Count Aloud";
 
     private int count = 0;
+    private TextToSpeech mTts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         decButton.setOnClickListener(this);
 
         updateUI();
+
+        mTts = new TextToSpeech(this, this);
 
         // This app shows how to set user preferences. Here is an
         //  example of how you would refer to a user preference:
@@ -42,15 +50,31 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.inc_button:
                 count++;
-                updateUI();
+                numberHasChanged();
                 break;
             case R.id.dec_button:
                 count--;
-                updateUI();
+                numberHasChanged();
                 break;
         }
     }
 
+    private void numberHasChanged() {
+        updateUI();
+
+        // Read number aloud if this feature is turned on in settings
+        boolean announce = PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(this.getString(R.string.announceKey), false);
+        if (announce) {
+            String message = Integer.toString(count);
+            // The method being called here is deprecated. I can't use
+            //   the new method because it only works with Android 21.
+            mTts.speak(message,
+                    // Drop all pending entries in the playback queue.
+                    TextToSpeech.QUEUE_FLUSH,
+                    null);
+        }
+    }
     private void updateUI() {
         TextView c = (TextView) findViewById(R.id.count_view);
         c.setText(Integer.toString(count));
@@ -79,4 +103,31 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         return super.onOptionsItemSelected(item);
     }
+
+    // Implements TextToSpeech.OnInitListener.
+    @Override
+    public void onInit(int status) {
+        // status can be either TextToSpeech.SUCCESS or TextToSpeech.ERROR.
+        if (status == TextToSpeech.SUCCESS) {
+            // Set preferred language to US english.
+            // Note that a language may not be available, and the result will indicate this.
+            int result = mTts.setLanguage(Locale.US);
+            // Try this someday for some interesting results.
+            // int result mTts.setLanguage(Locale.FRANCE);
+            if (result == TextToSpeech.LANG_MISSING_DATA ||
+                    result == TextToSpeech.LANG_NOT_SUPPORTED) {
+
+                // Language data is missing or the language is not supported.
+                Log.e(TAG, "Language is not available.");
+            } else {
+                // Speech engine is ready!
+            }
+
+        } else {
+            // Initialization failed.
+            Log.e(TAG, "Could not initialize TextToSpeech.");
+        }
+    }
+
+
 }
