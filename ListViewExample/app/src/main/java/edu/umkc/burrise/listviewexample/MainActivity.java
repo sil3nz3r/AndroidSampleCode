@@ -24,7 +24,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 
     private ArrayAdapter<String> adapter;
 
-    // Any List Data Structure
+    // Any List Interface Data Structure
     private ArrayList<String> listItems = new ArrayList<String>();;
 
     @Override
