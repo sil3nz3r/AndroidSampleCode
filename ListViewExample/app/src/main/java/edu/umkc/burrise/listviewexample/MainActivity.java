@@ -23,6 +23,8 @@ import android.widget.Toast;
 public class MainActivity extends ActionBarActivity implements OnClickListener, OnItemClickListener {
 
     private ArrayAdapter<String> adapter;
+
+    // Any List Data Structure
     private ArrayList<String> listItems = new ArrayList<String>();;
 
     @Override
