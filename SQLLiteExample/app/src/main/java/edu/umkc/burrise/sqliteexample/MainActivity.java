@@ -25,6 +25,10 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Pass application context here. If you pass activity context
+        //   I think it will keep your context around this preventing
+        //   space allocated for the activity from being freed when the
+        //   activity is no longer needed (e.g. screen rotation).
         Model model = Model.instance(getApplicationContext());
 
         ListView courseListView =
