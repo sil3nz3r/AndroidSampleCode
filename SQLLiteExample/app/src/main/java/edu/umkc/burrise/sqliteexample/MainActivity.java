@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Model model = Model.instance(this);
+        Model model = Model.instance(getApplicationContext());
 
         ListView courseListView =
                 (ListView)this.findViewById(R.id.listOfClasses);
