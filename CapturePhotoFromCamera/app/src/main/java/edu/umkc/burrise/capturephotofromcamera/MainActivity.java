@@ -9,40 +9,79 @@ package edu.umkc.burrise.capturephotofromcamera;
     app. The
   References:
   1. http://developer.android.com/training/camera/photobasics.html
+  2. http://www.tutorialforandroid.com/2010/10/take-picture-in-android-with.html
 
  */
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    ImageView mImageView = null;
+    private ImageView mImageView = null;
+    private File mCurrentPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        View decButton = findViewById(R.id.TakePictureButton);
-        decButton.setOnClickListener(this);
+        View pictureButton = findViewById(R.id.TakePictureButton);
+        pictureButton.setOnClickListener(this);
 
         mImageView = (ImageView) findViewById(R.id.ImageViewComponent);
-        decButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent takePictureIntent = takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            File photoFile = null;
+            try {
+                photoFile = getUniqueFileName();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                photoFile = null;
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
         }
+    }
+
+    // Generate a unique file name
+    private File getUniqueFileName() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "PHOTO_" + timeStamp;
+        File storageDir = new File(Environment.getExternalStorageDirectory(), getPackageName());
+        if (!storageDir.exists())
+            storageDir.mkdir();
+
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        mCurrentPhoto = image;
+        return image;
     }
 
     @Override
@@ -74,9 +113,17 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                      android:maxSdkVersion="18" />
          */
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            mImageView.setImageBitmap(imageBitmap);
+
+            Bitmap imageBitmap = null;
+            try {
+                imageBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.fromFile(mCurrentPhoto));
+                int nh = (int) ( imageBitmap.getHeight() * (512.0 / imageBitmap.getWidth()) );
+                Bitmap scaled = Bitmap.createScaledBitmap(imageBitmap, 512, nh, true);
+                mImageView.setImageBitmap(scaled);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
