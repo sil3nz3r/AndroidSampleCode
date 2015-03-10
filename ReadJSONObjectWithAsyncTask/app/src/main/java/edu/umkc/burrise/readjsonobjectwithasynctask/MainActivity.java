@@ -33,7 +33,7 @@ import java.io.InputStreamReader;
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     private static String JSONEXAMPLE = "JSON Example";
-    private static String defaultURI = "http://api.openweathermap.org/data/2.5/weather?q=Leawood,KS&units=imperial";
+    private static String DEFAULTWEATHERURI = "http://api.openweathermap.org/data/2.5/weather?q=Leawood,KS&units=imperial";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +53,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         StrictMode.setThreadPolicy(policy);
         // ****** End Delete Section
 
+        // Initialize form field with default URI
         EditText weatherURI = (EditText) findViewById(R.id.weatherURI);
-        weatherURI.setText(defaultURI);
+        weatherURI.setText(DEFAULTWEATHERURI);
 
         View temperatureButton = findViewById(R.id.getTemperatureButton);
         // This class implements the onClickListener interface.
@@ -63,12 +64,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         //   when the button is clicked.
         temperatureButton.setOnClickListener(this);
 
-        displayTemperatureForURI(defaultURI);
+        displayTemperatureForURI(DEFAULTWEATHERURI);
     }
 
-    private void displayTemperatureForURI(String defaultURI) {
+    // Note separation of concerns
+    private void displayTemperatureForURI(String weatherURI) {
 
-        String rawWeatherData = getRawWeatherData(defaultURI);
+        String rawWeatherData = getRawWeatherData(weatherURI);
 
         try {
             JSONObject fullJSONData = new JSONObject(rawWeatherData);
