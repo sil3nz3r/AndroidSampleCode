@@ -7,6 +7,7 @@ package edu.umkc.burrise.readjsonobjectwithasynctask;
 
    Don't forget to add a network permission request to your Manifest.xml file.
  */
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -35,6 +36,31 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private static String JSONEXAMPLE = "JSON Example";
     private static String DEFAULTWEATHERURI = "http://api.openweathermap.org/data/2.5/weather?q=Leawood,KS&units=imperial";
 
+
+    // First parm is input type to doInBackground
+    // Second parm is input type to onProgressUpdate
+    // Third parm is return type of doInBackground and
+    //    input type of onPostExecute
+    private class FetchWeatherTask extends AsyncTask<String, Void, String> {
+
+        protected String doInBackground(String... parms) {
+
+            // parms[0] is first parm, etc.
+            String rawWeatherData = getRawWeatherData(parms[0]);
+            return rawWeatherData;
+        }
+
+        // Not sure what the three dots mean? See: http://stackoverflow.com/questions/3158730/java-3-dots-in-parameters?rq=1
+        protected void onProgressUpdate(Void... values) {
+
+        }
+
+        //  invoked on the UI thread after the background computation finishes
+        protected void onPostExecute(String rawWeatherData) {
+            updateUI(rawWeatherData);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +74,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         //   production code.
 
         // ****** Delete after adding new thread to handle network IO
-        StrictMode.ThreadPolicy policy = new StrictMode.
-                ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        // ****** End Delete Section
+//        StrictMode.ThreadPolicy policy = new StrictMode.
+//                ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
+//        // ****** End Delete Section
 
         // Initialize form field with default URI
         EditText weatherURI = (EditText) findViewById(R.id.weatherURI);
@@ -64,13 +90,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         //   when the button is clicked.
         temperatureButton.setOnClickListener(this);
 
-        displayTemperatureForURI(DEFAULTWEATHERURI);
+        new FetchWeatherTask().execute(DEFAULTWEATHERURI);
+
+//        String rawWeatherData = getRawWeatherData(DEFAULTWEATHERURI);
+//        updateUI(rawWeatherData);
     }
 
     // Note separation of concerns
-    private void displayTemperatureForURI(String weatherURI) {
-
-        String rawWeatherData = getRawWeatherData(weatherURI);
+    private void updateUI(String rawWeatherData) {
 
         try {
             JSONObject fullJSONData = new JSONObject(rawWeatherData);
@@ -118,6 +145,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View v) {
         // Get URI entered
         EditText weatherURI = (EditText) findViewById(R.id.weatherURI);
-        displayTemperatureForURI(weatherURI.getText().toString());
+        new FetchWeatherTask().execute(weatherURI.getText().toString());
     }
 }
