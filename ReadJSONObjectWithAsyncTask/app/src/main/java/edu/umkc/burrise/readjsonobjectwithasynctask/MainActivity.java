@@ -6,6 +6,13 @@ package edu.umkc.burrise.readjsonobjectwithasynctask;
    4. http://openweathermap.org/current
 
    Don't forget to add a network permission request to your Manifest.xml file.
+
+   This program has a decent design. It has three code modules, each with
+      a specific concern (good example of separation of concerns).
+   An older version of this program had similar functionality but a
+      weak design. It is available at:
+      https://github.com/burrise/AndroidSampleCode/tree/31a0f99d4edb94c28684e2412432801c2930ded7/ReadJSONObjectWithAsyncTask/app/src/main/java/edu/umkc/burrise/readjsonobjectwithasynctask
+
  */
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
