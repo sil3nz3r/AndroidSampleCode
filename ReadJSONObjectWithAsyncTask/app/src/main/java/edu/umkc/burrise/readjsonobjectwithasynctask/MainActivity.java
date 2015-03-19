@@ -8,33 +8,19 @@ package edu.umkc.burrise.readjsonobjectwithasynctask;
    Don't forget to add a network permission request to your Manifest.xml file.
  */
 import android.os.AsyncTask;
-import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import edu.umkc.burrise.OpenWeatherData.OpenWeatherService;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
-    private static String JSONEXAMPLE = "JSON Example";
-    private static String DEFAULTWEATHERURI = "http://api.openweathermap.org/data/2.5/weather?q=Leawood,KS&units=imperial";
+    private static final String TAG = MainActivity.class.getName();
+    private static final String DEFAULTCITYNAME = "Kansas%20City,MO";
 
 
     // First parm is input type to doInBackground
@@ -46,8 +32,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         protected String doInBackground(String... parms) {
 
             // parms[0] is first parm, etc.
-            String rawWeatherData = getRawWeatherData(parms[0]);
-            return rawWeatherData;
+            OpenWeatherService weatherService = new OpenWeatherService(parms[0]);
+            try {
+                String temperature = weatherService.getTemperature();
+                return temperature;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "Not available";
         }
 
         // Not sure what the three dots mean? See: http://stackoverflow.com/questions/3158730/java-3-dots-in-parameters?rq=1
@@ -56,8 +48,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
 
         //  invoked on the UI thread after the background computation finishes
-        protected void onPostExecute(String rawWeatherData) {
-            updateUI(rawWeatherData);
+        protected void onPostExecute(String temperature) {
+            updateUI(temperature);
         }
     }
 
@@ -66,85 +58,27 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // onCreate is called on the GUI thread. You shouldn't
-        //   access network resources on the GUI thread.
-        //   There is runtime checks that prevent you from
-        //   accidently doing this. The following code will
-        //   disable these runtime checks. Don't do this with
-        //   production code.
-
-        // ****** Delete after adding new thread to handle network IO
-//        StrictMode.ThreadPolicy policy = new StrictMode.
-//                ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
-//        // ****** End Delete Section
-
-        // Initialize form field with default URI
+        // Initialize form field with default city name
         EditText weatherURI = (EditText) findViewById(R.id.weatherURI);
-        weatherURI.setText(DEFAULTWEATHERURI);
+        weatherURI.setText(DEFAULTCITYNAME);
 
         View temperatureButton = findViewById(R.id.getTemperatureButton);
-        // This class implements the onClickListener interface.
-        // Passing 'this' to setOnClickListener means the
-        //   onClick method in this class will get called
-        //   when the button is clicked.
         temperatureButton.setOnClickListener(this);
 
-        new FetchWeatherTask().execute(DEFAULTWEATHERURI);
+        new FetchWeatherTask().execute(weatherURI.getText().toString());
 
-//        String rawWeatherData = getRawWeatherData(DEFAULTWEATHERURI);
-//        updateUI(rawWeatherData);
     }
 
-    // Note separation of concerns
-    private void updateUI(String rawWeatherData) {
-
-        try {
-            JSONObject fullJSONData = new JSONObject(rawWeatherData);
-            Log.i(JSONEXAMPLE, fullJSONData.toString());
-            JSONObject JSONWeatherObj = fullJSONData.getJSONObject("main");
-            String temperature = JSONWeatherObj.getString("temp");
-
-            TextView temperatureOutput = (TextView) findViewById(R.id.temperatureView);
-            temperatureOutput.setText(temperature);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private void updateUI(String temperature) {
+        TextView temperatureOutput = (TextView) findViewById(R.id.temperatureView);
+        temperatureOutput.setText(temperature);
     }
 
-    private String getRawWeatherData(String uri) {
-
-        StringBuilder builder = new StringBuilder();
-        HttpClient client = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet(uri);
-        try {
-            HttpResponse response = client.execute(httpGet);
-            StatusLine statusLine = response.getStatusLine();
-            int statusCode = statusLine.getStatusCode();
-            if (statusCode == 200) {
-                HttpEntity entity = response.getEntity();
-                InputStream content = entity.getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    builder.append(line);
-                }
-            } else {
-                Log.e(JSONEXAMPLE, "Failed to download file");
-            }
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return builder.toString();
-    }
 
     @Override
     public void onClick(View v) {
         // Get URI entered
-        EditText weatherURI = (EditText) findViewById(R.id.weatherURI);
-        new FetchWeatherTask().execute(weatherURI.getText().toString());
+        EditText cityNameInputField = (EditText) findViewById(R.id.weatherURI);
+        new FetchWeatherTask().execute(cityNameInputField.getText().toString());
     }
 }
