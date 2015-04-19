@@ -36,3 +36,6 @@ If you don't, I think the .gitignore file in this root directory will cause the 
    $ git add .<br/>
    $ git commit -m 'which project add/update'<br/>
    $ git push<br/>
+
+5. To retrieve changes from from github.com:
+   $ git pull
