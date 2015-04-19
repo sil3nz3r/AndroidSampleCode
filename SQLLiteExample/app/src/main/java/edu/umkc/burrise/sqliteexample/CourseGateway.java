@@ -66,7 +66,11 @@ public class CourseGateway {
 
 	}
 
-	public void delete(int id) { // id is primary key for record
-		
+    // returns true if delete successful
+	public boolean delete(long id) { // id is primary key for record
+        DatabaseHelper dbHelper = new DatabaseHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        return db.delete(DatabaseHelper.COURSES_TABLE, DatabaseHelper.FIELD_ID + "=" + id, null) > 0;
 	}
 }
