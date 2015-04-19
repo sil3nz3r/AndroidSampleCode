@@ -23,6 +23,8 @@ import android.widget.TextView;
 
 import edu.umkc.burrise.OpenWeatherData.OpenWeatherService;
 
+import junit.framework.Assert;
+import junit.framework.Assert.*;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -56,6 +58,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         //  invoked on the UI thread after the background computation finishes
         protected void onPostExecute(String temperature) {
+            //Assert.assertNull(temperature);
+            Assert.assertNotNull("whatever message",temperature);
+            Assert.assertTrue(3<4);
+
+
             updateUI(temperature);
         }
     }
