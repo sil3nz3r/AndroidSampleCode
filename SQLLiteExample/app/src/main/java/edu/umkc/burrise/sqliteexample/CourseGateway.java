@@ -62,7 +62,7 @@ public class CourseGateway {
 	}
 
 	// id is primary key for record to update
-	public void update(int id, String courseName) {
+	public void update(long id, String courseName) {
 
 	}
 
