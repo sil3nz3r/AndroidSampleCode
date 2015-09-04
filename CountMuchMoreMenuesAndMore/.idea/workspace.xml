@@ -1564,7 +1564,7 @@
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="emulator-5554" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Save_Nexus_5_API_22_x86" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="C:/docs/classes/CS449/AndroidStudioWorkspace/HelloGitPractice" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CountPersistentStorage" />
   </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
