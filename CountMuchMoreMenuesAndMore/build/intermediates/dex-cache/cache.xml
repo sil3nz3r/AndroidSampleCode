@@ -2,32 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jar="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-8a623b9c343792276bc8566bd3e08957567f268d.jar" />
-    </item>
-    <item
-        jar="C:\Users\burrise\AndroidStudioProjects\CountMuchMore\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\burrise\AndroidStudioProjects\CountMuchMore\app\build\intermediates\pre-dexed\debug\classes-29bdc3931b5fbc3a3ff57ad671555f488618e188.jar" />
-    </item>
-    <item
-        jar="C:\Users\burrise\AndroidStudioProjects\CountMuchMore\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\burrise\AndroidStudioProjects\CountMuchMore\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-cd365b5cab58d58bac753610ffd4e5ddb49e1594.jar" />
-    </item>
-    <item
-        jar="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\pre-dexed\debug\classes-6e8933ba1b84667ffe6e7ee914fca47f1cc3529d.jar" />
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\pre-dexed\debug\classes-399a0f62f0cea2dd99152f34a356fb8a9c0ff6b7.jar" />
     </item>
     <item
         jar="C:\Users\burrise\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
@@ -37,18 +16,46 @@
         <dex dex="C:\Users\burrise\AndroidStudioProjects\CountMuchMore\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-387a219098a42fb3c71ef1ce327539d930001631.jar" />
     </item>
     <item
-        jar="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\pre-dexed\debug\classes-bb177c6d3df32899785c4e0d5eff11dd534572ca.jar" />
-    </item>
-    <item
         jar="C:\Users\burrise\AndroidStudioProjects\CountMuchMore\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
         <dex dex="C:\Users\burrise\AndroidStudioProjects\CountMuchMore\app\build\intermediates\pre-dexed\debug\classes-f7cadfc9a634705a6a1691dcd4ee1ede25b82d29.jar" />
+    </item>
+    <item
+        jar="C:\Users\burrise\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-aeb67bfb7f0888d06008da85380eef59c52a043a.jar" />
+    </item>
+    <item
+        jar="C:\Users\burrise\AndroidStudioProjects\CountMuchMore\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\burrise\AndroidStudioProjects\CountMuchMore\app\build\intermediates\pre-dexed\debug\classes-29bdc3931b5fbc3a3ff57ad671555f488618e188.jar" />
+    </item>
+    <item
+        jar="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\pre-dexed\debug\classes-7b6eeaebf0df8f7747239bc9c3258dc15d177035.jar" />
+    </item>
+    <item
+        jar="C:\Users\burrise\AndroidStudioProjects\CountMuchMore\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\burrise\AndroidStudioProjects\CountMuchMore\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-cd365b5cab58d58bac753610ffd4e5ddb49e1594.jar" />
+    </item>
+    <item
+        jar="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="C:\Users\burrise\CS449Projects\CountMuchMoreMenuesAndMore\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-f63faee0e1e9d587f4c1fb164ae0ee92cb5e7cb6.jar" />
     </item>
 
 </items>

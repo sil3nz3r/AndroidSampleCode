@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+//import android.support.v7.app.ActionBarActivity;
 import android.app.ActionBar;
 import android.os.Bundle;
 //import android.support.v7.view.ActionMode;
+import android.support.v7.app.ActionBarActivity;
 import android.view.ActionMode;
 import android.util.Log;
 import android.view.Menu;
@@ -21,7 +22,10 @@ import android.widget.Toast;
 
 /* If you don't mind limiting this app to users running 11 or higher,
    extend Activity and change the app theme in the Manifest to
-   HoloAppTheme (which is a new one I defined in styles.xml).
+   one that supports an action bar. I believe the default theme does
+   support an action bar. So, if you extend Activity
+   go to the manifest file and comment out or remove
+   android:theme attribute.
  */
 public class MainActivity extends ActionBarActivity implements OnClickListener {
     public final static String EXTRA_DATA = "edu.umkc.burrise.countmuchmore.ABOUTDATA";
@@ -96,6 +100,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         layout.setOnLongClickListener(new View.OnLongClickListener() {
             // Called when the user long-clicks on someView
             public boolean onLongClick(View view) {
+                // mActionMode is set back to null
+                //    above when the context menu disappears.
                 if (mActionMode != null) {
                     return false;
                 }
