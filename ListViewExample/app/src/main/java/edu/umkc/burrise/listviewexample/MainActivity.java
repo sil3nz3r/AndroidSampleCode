@@ -57,7 +57,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // Use a toast message to show which item selected
-        String text = "You selected item " + position;
+        String item = (String) parent.getItemAtPosition(position);
+        String text = "You selected item " + position +
+                " value = " + item;
         Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
         toast.show();
 
