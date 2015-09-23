@@ -63,6 +63,5 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
         // Use a toast message to show which item selected
         Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
         toast.show();
-
     }
 }
