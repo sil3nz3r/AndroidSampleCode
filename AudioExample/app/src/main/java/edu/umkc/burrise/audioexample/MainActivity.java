@@ -13,6 +13,7 @@ import java.io.IOException;
 
 /* This program demonstrates how to play audio.
    References: http://developer.android.com/guide/topics/media/mediaplayer.html
+      http://developer.android.com/reference/android/media/MediaPlayer.html
    You will need to create a raw resource folder and copy and paste
      a media file to this folder.
    To create a raw resource folder: (1) right click app, (2) select new/
@@ -41,14 +42,19 @@ public class MainActivity extends ActionBarActivity {
         //   if this method handles events from more than one
         //   component.
         if(v.getId() == R.id.playButton){
-            //objPlayer.start();
-            playFromAssets(this,"manmoon.mp3");
+            objPlayer.start();
+            // Example of playing a media file from assets folder
+            //playFromAssets(this,"manmoon.mp3");
         }
     }
 
     private void playFromAssets(Context context, String fileName) {
         try {
             AssetFileDescriptor afd = context.getAssets().openFd(fileName);
+            // MediaPlayer is stateful. See
+            //   http://developer.android.com/reference/android/media/MediaPlayer.html
+            //   for valid states for calling setDataSource().
+            objPlayer.reset();
             objPlayer.setDataSource(
                     afd.getFileDescriptor(),
                     afd.getStartOffset(),
