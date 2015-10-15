@@ -1,4 +1,6 @@
 package edu.umkc.burrise.readjsonobjectwithasynctask;
+/* Note, this app has a product key in OpenWeatherService that needs to be changed before
+ *   it will run. Remove c's from beginning and end. */
 /* References:
    1. http://www.javacodegeeks.com/2013/10/android-json-tutorial-create-and-parse-json-data.html
    2.
@@ -38,6 +40,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     //    input type of onPostExecute
     private class FetchWeatherTask extends AsyncTask<String, Void, String> {
 
+        // Not sure what the three dots mean? See: http://stackoverflow.com/questions/3158730/java-3-dots-in-parameters?rq=1
         protected String doInBackground(String... parms) {
 
             // parms[0] is first parm, etc.
@@ -51,17 +54,16 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             return "Not available";
         }
 
-        // Not sure what the three dots mean? See: http://stackoverflow.com/questions/3158730/java-3-dots-in-parameters?rq=1
         protected void onProgressUpdate(Void... values) {
 
         }
 
         //  invoked on the UI thread after the background computation finishes
         protected void onPostExecute(String temperature) {
+            // Example assert statements
             //Assert.assertNull(temperature);
-            Assert.assertNotNull("whatever message",temperature);
+            Assert.assertNotNull("Error: temperature is null",temperature);
             Assert.assertTrue(3<4);
-
 
             updateUI(temperature);
         }
@@ -73,13 +75,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // Initialize form field with default city name
-        EditText weatherURI = (EditText) findViewById(R.id.weatherURI);
-        weatherURI.setText(DEFAULTCITYNAME);
+        EditText cityName = (EditText) findViewById(R.id.weatherURI);
+        cityName.setText(DEFAULTCITYNAME);
 
         View temperatureButton = findViewById(R.id.getTemperatureButton);
         temperatureButton.setOnClickListener(this);
 
-        new FetchWeatherTask().execute(weatherURI.getText().toString());
+        //new FetchWeatherTask().execute(cityName.getText().toString());
 
     }
 

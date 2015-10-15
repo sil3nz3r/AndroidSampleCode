@@ -12,7 +12,7 @@ public class OpenWeatherService {
 
     // cityName is city,state. For example: Leawood,KS or Kansas%20City,MO
     public OpenWeatherService(String cityName) {
-        uri = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial";
+        uri = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=Ede1fdab04f806cbc652a01aed29256fd9die";
     }
 
     // Throws Exception if there is a problem getting temperature

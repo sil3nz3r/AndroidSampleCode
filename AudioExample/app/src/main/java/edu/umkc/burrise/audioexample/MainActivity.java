@@ -42,9 +42,11 @@ public class MainActivity extends ActionBarActivity {
         //   if this method handles events from more than one
         //   component.
         if(v.getId() == R.id.playButton){
-            objPlayer.start();
+            // Use one of the below to play the file
+
+            //objPlayer.start();
             // Example of playing a media file from assets folder
-            //playFromAssets(this,"manmoon.mp3");
+            playFromAssets(this,"manmoon.mp3");
         }
     }
 
