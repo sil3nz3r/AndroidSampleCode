@@ -87,6 +87,20 @@ public class CourseGateway {
 		if (AssertSettings.PRIORITY1_ASSERTIONS)
 			// There are many methods on Assert that can be called
 			Assert.assertNotNull("courseName is null",courseName);
+
+		// Note, Java also has builtin support for assertion checking.
+		// Assertion checking in Java is off by default.
+		// To turn on assertion checking, execute the following
+		// from the command line (before installing your app):
+		// adb shell setprop debug.assert 1
+		// To turn it off:
+		// adb shell setprop debug.assert 0
+		// Note, adb is a program in:
+		// C:\Program Files (x86)\Android\android-sdk\platform-tools
+
+		// Builtin Java support for assertion
+		int x = 1 + 1;
+		assert x == 4;
 	}
 
     // returns true if delete successful
