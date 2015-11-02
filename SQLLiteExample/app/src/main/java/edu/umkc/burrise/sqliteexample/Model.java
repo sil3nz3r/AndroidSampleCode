@@ -35,6 +35,10 @@ public class Model {
 		return assignmentGateway.insert(courseID, assignmentName);
 	}
 
+	public void updateCourse(long courseID, String courseName) throws Exception {
+		courseGateway.update(courseID,courseName);
+	}
+
 	public ArrayList<Assignment> getAssignments(Course c) {
 		return assignmentGateway.findForCourse(c);
 	}
