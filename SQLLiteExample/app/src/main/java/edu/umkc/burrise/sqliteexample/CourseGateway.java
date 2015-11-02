@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import junit.framework.Assert;
 
 public class CourseGateway {
 	
@@ -62,8 +63,30 @@ public class CourseGateway {
 	}
 
 	// id is primary key for record to update
-	public void update(long id, String courseName) {
-
+	// courseName is an alpha numeric value including blank but can not be null
+	// Throws:
+	//   Exception - if there is no record for given id
+	public void update(long id, String courseName) throws Exception {
+		// Note, this method doesn't actually update the DB, but
+		//   it does demonstrate exceptions and assertions.
+		DatabaseHelper dbHelper = new DatabaseHelper(context);
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		String[] from = { DatabaseHelper.FIELD_ID};
+		Cursor cursor = db.query(DatabaseHelper.COURSES_TABLE,
+				from,
+				DatabaseHelper.FIELD_ID + "= " + id + "",
+				null,
+				null,
+				null,
+				null);
+		// If there isn't a record for this ID, Throw an exception
+		if (!cursor.moveToNext()){
+			Exception e = new Exception("id " + id + " invalid for update");
+			throw e;
+		}
+		if (AssertSettings.PRIORITY1_ASSERTIONS)
+			// There are many methods on Assert that can be called
+			Assert.assertNotNull("courseName is null",courseName);
 	}
 
     // returns true if delete successful
