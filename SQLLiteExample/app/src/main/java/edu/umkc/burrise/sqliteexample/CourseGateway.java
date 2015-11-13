@@ -99,8 +99,8 @@ public class CourseGateway {
 		// C:\Program Files (x86)\Android\android-sdk\platform-tools
 
 		// Builtin Java support for assertion
-		int x = 1 + 1;
-		assert x == 4;
+		int x = 1;
+		assert x == 1;
 	}
 
     // returns true if delete successful
