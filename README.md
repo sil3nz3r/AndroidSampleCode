@@ -14,7 +14,7 @@ CountPersistentStorage - screen rotation, app life cycle and persistent storage 
 
 GenericActivity - Activity with custom data and using internal assets (images)
 
-SQLLiteExample - SQLLite Example plus Exceptions and Assertions (in CourseGateway)
+SQLLiteExample - SQLLite Example plus Exceptions and Assertions (in CourseGateway) and automated unit testing
 
 <h3>If you want to download and run a program here:</h3>
 
