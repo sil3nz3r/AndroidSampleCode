@@ -16,6 +16,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class JSONService {
 
@@ -26,6 +28,36 @@ public class JSONService {
     }
 
     public static String getJSONString(String uri) {
+
+        StringBuilder builder = new StringBuilder();
+        try {
+
+            URL url = new URL(uri);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            conn.connect();
+            int response = conn.getResponseCode();
+
+            if (response == 200) {
+                InputStream content = conn.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    builder.append(line);
+                }
+            } else {
+                Log.e(TAG, "Failed to download file");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return builder.toString();
+    }
+
+    public static String getJSONStringold(String uri) {
 
         StringBuilder builder = new StringBuilder();
         HttpClient client = new DefaultHttpClient();

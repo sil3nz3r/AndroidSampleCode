@@ -77,4 +77,14 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 
         Toast.makeText(this,"Assignments: " + assignments.toString(),Toast.LENGTH_SHORT).show();
     }
+
+    public void updateCourse(long courseID, String courseName) {
+        Model model = Model.instance(this);
+        try {
+            model.updateCourse(courseID, courseName);
+        } catch (Exception e) {
+            Toast.makeText(this,"***Error. Course " + courseID + " doesn't exist.",Toast.LENGTH_SHORT).show();
+        }
+
+    }
 }

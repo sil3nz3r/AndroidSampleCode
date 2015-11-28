@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GoogleMaps1</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Zm</string>
+    <string name="action_location">Loc</string>
+</resources>

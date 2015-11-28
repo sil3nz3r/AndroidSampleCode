@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+<<<<<<< HEAD
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
@@ -8,6 +9,15 @@ android {
         applicationId "edu.umkc.burrise.readjsonobjectwithasynctask"
         minSdkVersion 14
         targetSdkVersion 23
+=======
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "edu.umkc.burrise.readjsonobjectwithasynctask"
+        minSdkVersion 15
+        targetSdkVersion 22
+>>>>>>> burrise/master
         versionCode 1
         versionName "1.0"
     }
@@ -21,5 +31,9 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+<<<<<<< HEAD
     compile 'com.android.support:appcompat-v7:23.0.1'
+=======
+    compile 'com.android.support:appcompat-v7:22.2.0'
+>>>>>>> burrise/master
 }
